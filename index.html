@@ -4,5 +4,8 @@
     const options = ['rock', 'paper', 'scissors'];
     return options[Math.floor(Math.random() * options.length)];
   }
-  console.log(getComputerChoice())
+  function getHumanChoice() {
+    return prompt('What are you playing?');
+  }
+  console.log(getHumanChoice())
 </script>
