@@ -38,10 +38,20 @@
       console.log('The computers have won');
     }
   }
-
-  while (humanScore != 3 && computerScore != 3) {
-    roundEval(getHumanChoice(), getComputerChoice())
-  }
   
-  matchEval(humanScore, computerScore)
+  function game() {
+    let startGame = prompt("Do you want to play? (yes or y)")
+    
+    if (startGame == "yes" || startGame == "y") {
+      while (humanScore != 3 && computerScore != 3) {
+        roundEval(getHumanChoice(), getComputerChoice())
+      }
+    }
+
+    matchEval(humanScore, computerScore)
+  }
+
+  while (true) {
+    game()
+  }
 </script>
