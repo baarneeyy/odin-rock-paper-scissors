@@ -1,57 +1,84 @@
-<script>
-  console.log('Rock Paper Scissors');
-  
-  let humanScore = 0;
-  let computerScore = 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button onclick="console.log(playRound(self))" text-content="rock">rock</button>
+    <button onclick="console.log(playRound(self))">paper</button>
+    <button onclick="console.log(playRound(self))">scissors</button>
+  </div>
 
-  function getComputerChoice() {
-    const options = ['rock', 'paper', 'scissors'];
-    return options[Math.floor(Math.random() * options.length)];
-  }
-  
-  function getHumanChoice() {
-    return prompt('What are you playing?');
-  }
 
-  function roundEval(human, computer) {
-    if (human == 'rock' && computer == 'paper') {
-      computerScore += 1;
-    } else if (human == 'rock' && computer == 'scissors') {
-      humanScore += 1;
-    } else if (human == 'paper' && computer == 'scissors') {
-      computerScore += 1;
-    } else if (human == 'paper' && computer == 'rock') {
-      humanScore += 1;
-    } else if (human == 'scissors' && computer == 'rock') {
-      computerScore += 1;
-    } else if (human == 'scissors' && computer == 'paper') {
-      humanScore += 1;
+  <style>
+    .btnRow {
+      display: flex;
+      flex-direction: row;
     }
-    console.log(`Computer Score = ${computerScore}`);
-    console.log(`Human Score = ${humanScore}`);
-  }
-
-  function matchEval(human, computer) {
-    if (human > computer) {
-      console.log('The human race wins');
-    } else if (human < computer) {
-      console.log('The computers have won');
-    }
-  }
-  
-  function game() {
-    let startGame = prompt("Do you want to play? (yes or y)")
+  </style>
+  <script>
+    console.log('Rock Paper Scissors');
     
-    if (startGame == "yes" || startGame == "y") {
-      while (humanScore != 3 && computerScore != 3) {
-        roundEval(getHumanChoice(), getComputerChoice())
+    let humanScore = 0;
+    let computerScore = 0;
+  
+    function getComputerChoice() {
+      const options = ['rock', 'paper', 'scissors'];
+      return options[Math.floor(Math.random() * options.length)];
+    }
+    
+    function getHumanChoice() {
+      return prompt('What are you playing?');
+    }
+
+    function playRound(element) {
+      return element.textContent
+    }
+  
+    function roundEval(human, computer) {
+      if (human == 'rock' && computer == 'paper') {
+        computerScore += 1;
+      } else if (human == 'rock' && computer == 'scissors') {
+        humanScore += 1;
+      } else if (human == 'paper' && computer == 'scissors') {
+        computerScore += 1;
+      } else if (human == 'paper' && computer == 'rock') {
+        humanScore += 1;
+      } else if (human == 'scissors' && computer == 'rock') {
+        computerScore += 1;
+      } else if (human == 'scissors' && computer == 'paper') {
+        humanScore += 1;
+      }
+      console.log(`Computer Score = ${computerScore}`);
+      console.log(`Human Score = ${humanScore}`);
+    }
+  
+    function matchEval(human, computer) {
+      if (human > computer) {
+        console.log('The human race wins');
+      } else if (human < computer) {
+        console.log('The computers have won');
       }
     }
-
-    matchEval(humanScore, computerScore)
-  }
-
-  while (true) {
-    game()
-  }
-</script>
+    
+    function game() {
+      let startGame = prompt("Do you want to play? (yes or y)")
+      
+      if (startGame == "yes" || startGame == "y") {
+        while (humanScore != 3 && computerScore != 3) {
+          roundEval(getHumanChoice(), getComputerChoice())
+        }
+      }
+  
+      matchEval(humanScore, computerScore)
+    }
+  
+    //while (true) {
+      //game()
+    //}
+  </script>
+</body>
+</html>
