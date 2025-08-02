@@ -6,10 +6,11 @@
   <title>Document</title>
 </head>
 <body>
+  <button onclick="roundEval(humanChoice, getComputerChoice())"> EVAL ROUND </button>
   <div>
-    <button onclick="console.log(playRound(self))" text-content="rock">rock</button>
-    <button onclick="console.log(playRound(self))">paper</button>
-    <button onclick="console.log(playRound(self))">scissors</button>
+    <button onclick="getHumanChoice(this)" text-content="rock">rock</button>
+    <button onclick="getHumanChoice(this)" text-content="paper">paper</button>
+    <button onclick="getHumanChoice(this)" text-content="scissors">scissors</button>
   </div>
 
 
@@ -24,20 +25,19 @@
     
     let humanScore = 0;
     let computerScore = 0;
+    let humanChoice = '';
+    let isOver;
   
     function getComputerChoice() {
       const options = ['rock', 'paper', 'scissors'];
       return options[Math.floor(Math.random() * options.length)];
     }
     
-    function getHumanChoice() {
-      return prompt('What are you playing?');
+    function getHumanChoice(element) {
+      humanChoice = element.getAttribute('text-content');
+      console.log(`Human choice: ${humanChoice}`);
     }
 
-    function playRound(element) {
-      return element.textContent
-    }
-  
     function roundEval(human, computer) {
       if (human == 'rock' && computer == 'paper') {
         computerScore += 1;
@@ -52,6 +52,10 @@
       } else if (human == 'scissors' && computer == 'paper') {
         humanScore += 1;
       }
+      if (humanScore == 5 || computerScore == 5) {
+        isOver = true;
+        matchEval(humanScore, computerScore);
+      }
       console.log(`Computer Score = ${computerScore}`);
       console.log(`Human Score = ${humanScore}`);
     }
@@ -63,22 +67,6 @@
         console.log('The computers have won');
       }
     }
-    
-    function game() {
-      let startGame = prompt("Do you want to play? (yes or y)")
-      
-      if (startGame == "yes" || startGame == "y") {
-        while (humanScore != 3 && computerScore != 3) {
-          roundEval(getHumanChoice(), getComputerChoice())
-        }
-      }
-  
-      matchEval(humanScore, computerScore)
-    }
-  
-    //while (true) {
-      //game()
-    //}
   </script>
 </body>
 </html>
